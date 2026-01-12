@@ -1,0 +1,43 @@
+<h2>Ajouter un produit</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <p-floatlabel variant="on">
+    <label for="name">Nom du produit</label>
+    <input pInputText id="name" required formControlName="name">
+  </p-floatlabel>
+  <p-floatlabel variant="on">
+    <label for="description">Description</label>
+    <input pTextarea id="description" formControlName="description">
+  </p-floatlabel>
+  <p-floatlabel variant="on">
+    <p-inputNumber id="price" formControlName="price"  [showButtons]="true" inputId="stacked" mode="currency" currency="eur"></p-inputNumber>
+  </p-floatlabel>
+  @if(imageChangedEvent){
+    <div>
+      <image-cropper
+        style="height: 500px"
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="1"
+        [resizeToWidth]="300"
+        [resizeToHeight]="300"
+        [roundCropper]="false"
+        format="webp"
+        (imageCropped)="imageCropped($event)"
+        output="base64"></image-cropper>
+    </div>
+  }
+  <div>
+    <p-fileupload
+      mode="basic"
+      chooseIcon="pi pi-upload"
+      accept="image/*"
+      [auto]="true"
+      chooseLabel="Choisir une image"
+      (onSelect)="fileChangeEvent($event)"
+      [showUploadButton]="false"
+      [showCancelButton]="false">
+    </p-fileupload>
+  </div>
+
+  <p-button (onClick)="submit()" label="Ajouter"></p-button>
+</form>
