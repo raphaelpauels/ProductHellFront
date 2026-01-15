@@ -1,6 +1,9 @@
 {
   "name": "ti-net-2026-product-hell.fend",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=20.19.0 <23"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
